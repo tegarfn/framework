@@ -8,9 +8,10 @@ use Tests\TestCase;
 
 class envtest extends TestCase
 {
-    
+
     public function testEnv()
     {
-        
+        $appName = env("Unmul");
+        self::assertEquals("Informatika", $appName);
     }
 }
