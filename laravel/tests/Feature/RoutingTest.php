@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class RoutingTest extends TestCase
@@ -121,5 +122,15 @@ class RoutingTest extends TestCase
             'admin' => 'true',
             'password' => 'rahasia'
         ])->assertSeeText('Tegar')->assertDontSeeText('admin')->assertSeeText('rahasia');
+    }
+
+    public function testFilterMerge()
+    {
+        $this->post('input/filter/merge', [
+            "username" => "Tegar",
+            "admin" => "true",
+            "password" => "rahasia"
+
+        ])->assertSeeText('Tegar')->assertSeeText('rahasia')->assertSeeText('admin')->assertSeeText('false');
     }
 }

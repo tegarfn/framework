@@ -5,6 +5,14 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+class ValidationException extends \Exception
+{
+    public function __construct($message)
+    {
+        parent::__construct($message);
+    }
+}
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -22,7 +30,7 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        //
+        ValidationException::class
     ];
 
     /**
@@ -44,7 +52,7 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            var_dump($e);
         });
     }
 }
